@@ -1,0 +1,31 @@
+﻿@page
+@model sparkApp.Pages.ServiceTypes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServiceType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceType.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceType.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceType.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceType.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ServiceType.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

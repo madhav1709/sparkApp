@@ -9,5 +9,6 @@ namespace sparkApp.Utility
 	{
 		public const string AdminEndUser = " Admin";
 		public const string CustomerEndUser = " Customer";
+		public const int PaginationUserPage = 2;
 	}
 }
