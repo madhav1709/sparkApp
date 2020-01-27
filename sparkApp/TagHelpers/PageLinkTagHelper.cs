@@ -34,7 +34,7 @@ namespace sparkApp.TagHelpers
 		{
 			IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
 			TagBuilder result = new TagBuilder("div");
-			for(int i=1;i <= pageModel.TotalItems;i++)
+			for(int i=1;i <= pageModel.TotalPage;i++)
 			{
 				TagBuilder tag = new TagBuilder("a");
 				string url = pageModel.UrlParams.Replace(":", i.ToString());

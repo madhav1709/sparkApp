@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using sparkApp.Data;
 using sparkApp.Models;
+using sparkApp.Utility;
 
 namespace sparkApp
 {
+    
     public class EditModel : PageModel
     {
         private readonly sparkApp.Data.ApplicationDbContext _context;

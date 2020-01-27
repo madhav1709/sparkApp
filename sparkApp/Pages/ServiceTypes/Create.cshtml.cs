@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using sparkApp.Data;
 using sparkApp.Models;
+using sparkApp.Utility;
 
 namespace sparkApp
 {
+   
     public class CreateModel : PageModel
 
 
     {
-
+       
         private readonly ApplicationDbContext _db;
         [BindProperty]
         public ServiceType ServiceType { get; set; }
@@ -21,6 +24,7 @@ namespace sparkApp
         {
             _db = db;
         }
+        
         public IActionResult OnGet()
         {
             return Page();

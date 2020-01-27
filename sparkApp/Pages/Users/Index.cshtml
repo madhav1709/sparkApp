@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<form>
+<form method="get" asp-page="Index">
 	<br /><br />
 	<div class="row">
 		<div class="col-6">
@@ -31,6 +31,13 @@
 						</div>
 					</div>
 
+				</div>
+				<div class="col-1">
+					<div class="row" style="padding-top:10px;padding-right:15px;">
+						<button type="submit" name="Submit" value="Search" class="btn btn-info form-control">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

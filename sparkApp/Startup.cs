@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using sparkApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using sparkApp.Models;
+using sparkApp.Utility;
 
 namespace sparkApp
 {
@@ -34,18 +36,29 @@ namespace sparkApp
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-				services.AddIdentity<IdentityUser,IdentityRole>()
-				.AddDefaultTokenProviders()
+                    Configuration.GetConnectionString("DefaultConnection")))
+                .AddIdentity<IdentityUser, IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultTokenProviders()
 				.AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-				
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeFolder("/ServiceTypes", "OnlyAdminAccess");
+
+
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("OnlyAdminAccess", policy => policy.RequireRole(SD.AdminEndUser));
+            });
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
